@@ -1,2 +1,274 @@
 # Quiz-Management-System
 A Simple java console based application which allow administrators to create and manage quizzes. Enable users to take quizzes and receive immediate feedback on their performance. Store and retrieve quiz data efficiently.
+import java.util.*;
+import java.lang.*;
+import java.util.Scanner;
+
+public class Main {
+
+    static void main_menu(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println("-_-_-_-_-_-_-_-_-_-_WELCOME TO TECHNICAL QUIZ -_-_-_-_-_-_-_-_-_-_");
+        System.out.println();
+        System.out.println("-_-_-_-_-_-_-_-_-_-_ ENTER YOUR DEPARTMENT -_-_-_-_-_-_-_-_-_-_");
+        System.out.println();
+        System.out.println("1.ECE (Type 1)  \t\t\t 2.EEE (Type 2)");
+        System.out.println();
+        System.out.println("3.CSE (Type 3) \t\t\t 4.MECH (Type 4)");
+        System.out.println();
+        System.out.println("-_-_-_-_-_-_-_-_-_-_TYPE 0 IN CASE IF YOU WANT TO EXIT -_-_-_-_-_-_-_-_-_-_");
+
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice = 100;
+        System.out.println("ENTER YOUR NAME:");
+        String name=sc.nextLine();
+        System.out.println("ENTER YOUR GENDER:");
+        String gender=sc.nextLine();
+        System.out.println("ENTER YOUR COLLEGE NAME:");
+        String college=sc.nextLine();
+        while(choice!=0){
+
+            main_menu();
+            choice = sc.nextInt();
+
+            while(choice!=9 && choice!=0){
+                switch (choice) {
+                    case 1:
+                        Ece ece=new Ece(name,gender,college,choice);
+                        ece.quiz();
+                        System.out.println("1.TAKE THE QUIZ ONE MORE TIME(Type 1)");
+                        System.out.println("9.GO BACK TO MAIN MENU");
+                        choice = sc.nextInt();
+                        break;
+                    case 2:
+                        Eee eee=new Eee(name,gender,college,choice);
+                        eee.quiz();
+                        System.out.println("2.TAKE THE QUIZ ONE MORE TIME(Type 2)");
+                        System.out.println("9.GO BACK TO MAIN MENU");
+                        choice = sc.nextInt();
+                        break;
+                    case 3:
+                        Cse cse=new Cse(name,gender,college,choice);
+                        cse.quiz();
+                        System.out.println("3.TAKE THE QUIZ ONE MORE TIME(Type 3)");
+                        System.out.println("9.GO BACK TO MAIN MENU");
+                        choice = sc.nextInt();
+                        break;
+                    case 4:
+                        Mech mech=new Mech(name,gender,college,choice);
+                        mech.quiz();
+                        System.out.println("4.TAKE THE QUIZ ONE MORE TIME(Type 4)");
+                        System.out.println("9.GO BACK TO MAIN MENU");
+                        choice = sc.nextInt();
+                        break;
+                    default:
+                        System.out.println("ENTER VALID CHOICE: ");
+                        break;
+                }
+            }
+        }
+
+    }
+}
+
+
+class Mech {
+    Scanner sc = new Scanner(System.in);
+    private String name;
+    private String gender;
+    private String college;
+    public int dep;
+
+    public Mech(String name, String gender, String college, int dep) {
+        this.name = name;
+        this.gender = gender;
+        this.college = college;
+        this.dep = dep;
+    }
+
+    public void quiz() {
+        System.out.println("MECH QUIZ:");
+        System.out.println();
+        System.out.println("ONE TON OF REFRIGERATOR IS EQUAL TO");
+        System.out.println("1.120 B Th U/hrL\t\t\t\t2.200 B Th U/hr");
+        System.out.println("1200 B Th U/hr\t\t\t\t\t4.12000 B Th U/hr");
+        int a1 = sc.nextInt();
+        System.out.println();
+        System.out.println("WHICH OF THE FOLLOWING PROTECTS PENSTOCK DUE SUDDEN VARIATION OF VELOCITY OF WATER?");
+        System.out.println("1. ANCHORS\t\t\t\t\t\t\t\t2.FOREBAYS");
+        System.out.println("3.TRASH RACK\t\t\t\t4.SURGE TANK");
+        int a2 = sc.nextInt();
+        System.out.println();
+        System.out.println("THERMAL EFFICIENCY OF ENGINE IS LOW DUE TO ");
+        System.out.println("1.LOW COMPRESSION RATIO\t\t\t\t2.HIGH COMPRESSION RATIO");
+        System.out.println("3.MEDIUM COMPRESSION RATIO\t\t\t\t\t\t\t\t4.NONE OF THE ABOVE");
+        int a3 = sc.nextInt();
+        marks(a1, a2, a3);
+    }
+
+    public void marks(int a1, int a2, int a3) {
+        System.out.println("YOUR MARKS:");
+        if (a1 == 4&& a2 == 4 && a3 == 1) {
+            System.out.println("3");
+        }
+        else if ((a1 == 4 || a2 == 4 )&& (a3 == 1||a1==4)&&(a2==4||a3==1)) {
+            System.out.println("2");
+        }
+        else{
+            System.out.println("1");
+        }
+
+    }
+}
+
+
+class Cse {
+    Scanner sc = new Scanner(System.in);
+    private String name;
+    private String gender;
+    private String college;
+    public int dep;
+
+    public Cse(String name, String gender, String college, int dep) {
+        this.name = name;
+        this.gender = gender;
+        this.college = college;
+        this.dep = dep;
+    }
+
+    public void quiz() {
+        System.out.println("CSE QUIZ:");
+        System.out.println();
+        System.out.println("WHICH AMONG THE FOLLOWING IS NOT A COMPUTER LANGUAGE");
+        System.out.println("1.ALGOL\t\t\t\t2.COBOL");
+        System.out.println("3.PASCAL\t\t\t\t\t4.DRAM");
+        int a1 = sc.nextInt();
+        System.out.println();
+        System.out.println("THE FIFTH GENERATION COMPUTER WORKS ON");
+        System.out.println("1.TRANSISTORS\t\t\t\t\t\t\t\t2.ARTIFICIAL INTELLIGENCE");
+        System.out.println("3.INTEGRATED CIRCUITS\t\t\t\t4.MICROPROCESSOR");
+        int a2 = sc.nextInt();
+        System.out.println();
+        System.out.println("WHO AMONG THE FOLLOWING FIRST INVENTED THE MOUSE");
+        System.out.println("1.DOUGLAS.C.ENGLEBART\t\t\t\t2.ADAM OSBARNE");
+        System.out.println("3.ADI SHAMIR\t\t\t\t\t\t\t\t4.CHARLES BABAGE");
+        int a3 = sc.nextInt();
+        marks(a1, a2, a3);
+    }
+
+    public void marks(int a1, int a2, int a3) {
+        System.out.println("YOUR MARKS:");
+        if (a1 == 4&& a2 == 2 && a3 == 1) {
+            System.out.println("3");
+        }
+        else if ((a1 == 4 || a2 == 2 )&& (a3 == 1||a1==4)&&(a2==2||a3==1)) {
+            System.out.println("2");
+        }
+        else{
+            System.out.println("1");
+        }
+
+    }
+}
+
+class Eee {
+    Scanner sc = new Scanner(System.in);
+    private String name;
+    private String gender;
+    private String college;
+    public int dep;
+
+    public Eee(String name, String gender, String college, int dep) {
+        this.name = name;
+        this.gender = gender;
+        this.college = college;
+        this.dep = dep;
+    }
+
+    public void quiz() {
+        System.out.println("EEE QUIZ:");
+        System.out.println();
+        System.out.println("IF FIELD CURRENT IS DECREASED IN SHUNT DC MOTOR,THE SPEED OF THE MOTOR");
+        System.out.println("1.REMAINS SAME\t\t\t\t2.INCREASES");
+        System.out.println("3.DECREASES\t\t\t\t\t4.NONE OF THE ABOVE");
+        int a1 = sc.nextInt();
+        System.out.println();
+        System.out.println("IN WARD-LEONARD SYSTEM, THE LOWER LIMIT OF THE SPEED IMPOSED BY");
+        System.out.println("1.FIELD RESISTANCE\t\t\t\t\t\t\t\t\t\t\t\t\t\t2.ARMATURE RESISTANCE");
+        System.out.println("3.RESIDUAL MAGNETISM OF THE GENERATOR\t\t\t\t4.NONE OF THE ABOVE");
+        int a2 = sc.nextInt();
+        System.out.println();
+        System.out.println("WHICH AMONG THE FOLLOWING IS A CURRENT CONTROLLED?");
+        System.out.println("1.MOSFET\t\t\t\t2.IGBT");
+        System.out.println("3.FET\t\t\t\t\t\t4.BJT");
+        int a3 = sc.nextInt();
+        marks(a1, a2, a3);
+    }
+
+    public void marks(int a1, int a2, int a3) {
+        System.out.println("YOUR MARKS:");
+        if (a1 == 2 && a2 == 3 && a3 == 4) {
+            System.out.println("3");
+        }
+        else if ((a1 == 2||a2 == 3 )&& (a3 == 4||a1==2)&&(a2==3||a3==4)) {
+            System.out.println("2");
+        }
+        else{
+            System.out.println("1");
+        }
+
+    }
+}
+
+class Ece {
+    Scanner sc = new Scanner(System.in);
+    private String name;
+    private String gender;
+    private String college;
+    public int dep;
+
+    public Ece(String name, String gender, String college, int dep) {
+        this.name = name;
+        this.gender = gender;
+        this.college = college;
+        this.dep = dep;
+    }
+
+    public void quiz() {
+        System.out.println("ECE QUIZ:");
+        System.out.println();
+        System.out.println("WHICH OF THE FOLLOWING IS TRIVALENT DOPING ELEMENT?");
+        System.out.println("1.ARSENIC\t\t\t\t2.ANTIMONY");
+        System.out.println("3.BORON\t\t\t\t\t4.HELIUM");
+        int a1 = sc.nextInt();
+        System.out.println();
+        System.out.println("WHAT WILL BE THE POWER DISSIPATION ACROSS A SILICON DIODE CARRYING A CURRENT OF 50mA?");
+        System.out.println("1.25mW\t\t\t\t2.35mW");
+        System.out.println("3.35W\t\t\t\t4.25W");
+        int a2 = sc.nextInt();
+        System.out.println();
+        System.out.println("WHICH AMONG THE FOLLOWING IS A CURRENT CONTROLLED?");
+        System.out.println("1.MOSFET\t\t\t\t2.IGBT");
+        System.out.println("3.FET\t\t\t\t\t\t4.BJT");
+        int a3 = sc.nextInt();
+        marks(a1, a2, a3);
+    }
+
+    public void marks(int a1, int a2, int a3) {
+        System.out.println("YOUR MARKS:");
+        if (a1 == 3 && a2 == 2 && a3 == 4) {
+            System.out.println("3");
+        }
+        else if ((a1 == 3 || a2 == 2 )&& (a3 == 4||a1==3)&&(a2==2||a3==4)) {
+            System.out.println("2");
+        }
+        else{
+            System.out.println("1");
+        }
+
+    }
+}
